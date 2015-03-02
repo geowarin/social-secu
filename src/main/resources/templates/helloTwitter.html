@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head>
+    <title>Hello Twitter</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="container">
+
+        <h3>Hello, <span th:text="${twitterProfile.name}">Some User</span>!</h3>
+
+        <h4>These are your last tweets:</h4>
+
+        <ul class="collection">
+            <li class="collection-item" th:each="tweet:${tweets}" th:text="${tweet.text}">Tweet</li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

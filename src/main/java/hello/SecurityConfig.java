@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/test", "/webjars/**", "/login").permitAll()
+                .antMatchers("/webjars/**", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -46,17 +46,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/");
-    }
-
-    @Configuration
-    @EnableSocial
-    protected static class SocialAutoConfigurationAdapter extends SocialConfigurerAdapter {
-        @Autowired
-        private DataSource dataSource;
-
-        @Override
-        public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
-            return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
-        }
     }
 }
